@@ -11,6 +11,7 @@ export const Register = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+
   const submit = (data) => {
     request
       .post("/register", data)
@@ -20,41 +21,55 @@ export const Register = () => {
         }
       })
       .catch((error) => {
-        setError("email", { message: "uasdaniwa fakfna;" });
+        setError("email", {
+          message: "Registration failed. Please try again.",
+        });
       });
   };
+
   return (
-    <div className="absolute inset-0 flex justify-center items-center">
-      <div className="w-[400px] p-5 bg-teal-400 rounded-sm">
-        <h1>Register</h1>
-        <Link className="font-bold text-red-500 block text-end" to={"/login"}>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">Register</h1>
+        <Link
+          className="text-sm text-blue-500 hover:underline block mb-4 text-right"
+          to="/login"
+        >
           LOGIN
         </Link>
-        <form onSubmit={handleSubmit(submit)}>
+        <form onSubmit={handleSubmit(submit)} className="space-y-4">
           <input
-            {...register("name", { required: true })}
+            {...register("name", { required: "Name is required" })}
             placeholder="Name"
-            className="block w-full p-2 my-2"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
           />
+          {errors.name && (
+            <p className="text-red-500 text-sm">{errors.name.message}</p>
+          )}
           <input
-            {...register("email", { required: true })}
+            {...register("email", { required: "Email is required" })}
             placeholder="Email"
-            className="block w-full p-2 my-2"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="email"
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && (
+            <p className="text-red-500 text-sm">{errors.email.message}</p>
+          )}
           <input
-            {...register("password", { required: true })}
+            {...register("password", { required: "Password is required" })}
             placeholder="Password"
-            className="block w-full p-2 my-2"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="password"
           />
+          {errors.password && (
+            <p className="text-red-500 text-sm">{errors.password.message}</p>
+          )}
           <button
             type="submit"
-            className="font-bold w-full p-4 bg-violet-400 text-center text-white"
+            className="w-full p-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition-colors"
           >
-            send
+            Register
           </button>
         </form>
       </div>

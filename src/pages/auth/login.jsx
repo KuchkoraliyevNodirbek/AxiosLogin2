@@ -16,33 +16,33 @@ export const Login = () => {
     });
   };
   return (
-    <div className="absolute inset-0 flex justify-center items-center">
-      <div className="w-[400px] p-5 bg-teal-400 rounded-sm">
-        <h1>Login</h1>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-sm p-8 bg-white shadow-lg rounded-lg">
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">Login</h1>
         <Link
-          className="font-bold text-red-500 block text-end"
-          to={"/register"}
+          className="text-sm text-blue-500 hover:underline block mb-4 text-right"
+          to="/register"
         >
           Register
         </Link>
-        <form onSubmit={handleSubmit(submit)}>
+        <form onSubmit={handleSubmit(submit)} className="space-y-4">
           <input
             {...register("email", { required: true })}
             placeholder="Email"
-            className="block w-full p-2 my-2"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="email"
           />
           <input
             {...register("password", { required: true })}
             placeholder="Password"
-            className="block w-full p-2 my-2"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="password"
           />
           <button
             type="submit"
-            className="font-bold w-full p-4 bg-violet-400 text-center text-white"
+            className="w-full p-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition-colors"
           >
-            send
+            Send
           </button>
         </form>
       </div>
